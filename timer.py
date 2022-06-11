@@ -5,7 +5,6 @@ class TimerError(Exception):
     pass
 
 
-
 class Timer:
     def __init__(self, text="The time elapsed is {:0.4f} seconds"):
         self._start_time = None

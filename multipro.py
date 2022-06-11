@@ -66,7 +66,7 @@ def produce_primes(x):
 
 
 if __name__ == '__main__':
-
+    print("")
     number = UserInput.user_input()
     answer = produce_primes(number)
     print(answer)

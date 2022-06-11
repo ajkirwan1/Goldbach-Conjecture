@@ -4,47 +4,19 @@ import Error
 
 def user_input():
     while True:
-        print("Please enter a positive even number (integer) greater than 2:\n")
+        print("Please enter a positive even number greater than 2:\n")
         try:
             x = int(input())
-            if x == 0:
-                raise Error.ZeroError
-            if x == 1 or x == 2:
-                raise Error.TwoOrOneError
+            if x <= 2:
+                raise Error.NotGreaterThan2Error
             if x % 2 != 0:
                 raise Error.OddNumberError
-            if x >= 1000000000:
+            if x >= 100000:
                 raise Error.LargeNumberError
-            if x >= 1000000:
-                print("This number is large. Would you like to run in parallel to save time?")
             #break
         except ValueError:
-            print("Value error")
-            print("Would you like to try again? Type Y or N")
-            answer = input().capitalize()
-            if answer == "No":
-                break
-            elif answer == "Yes":
-                print("You'll now make another attempt")
-            else:
-                print(f"You typed \'{answer}\' which is not a viable input")
-                print("The program will now end")
-                break
-        except Error.ZeroError:
-            print("Zero is not defined")
-            print("Would you like to try again? Type \'Yes\' or \'No\'")
-            answer = (input()).capitalize()
-            if answer == "No":
-                break
-            elif answer == "Yes":
-                print("You'll now make another attempt")
-            else:
-                print(f"You typed \'{answer}\' which is not a viable input")
-                print("The program will now end")
-                break
-        except Error.TwoOrOneError:
-            print("Number needs to be more than 2")
-            print("Would you like to try again? Type \'Yes\' or \'No\'")
+            print("The number you chose does not fit criteria")
+            print("Would you like to try again? Type Yes or No")
             answer = input().capitalize()
             if answer == "No":
                 break
@@ -56,8 +28,21 @@ def user_input():
                 break
         except Error.OddNumberError:
             print("The number you chose is odd. The input number must be even")
-            print("Would you like to try again? Type \'Yes\' or \'No\'")
-            answer = input()
+            print("Would you like to try again? Type Yes or No")
+            answer = input().capitalize()
+            print(f"You answered {answer}")
+            if answer == "No":
+                break
+            elif answer == "Yes":
+                print("You'll now make another attempt")
+            else:
+                print(f"You typed \'{answer}\' which is not a viable input")
+                print("The program will now end")
+                break
+        except Error.NotGreaterThan2Error:
+            print("The number you chose is not greater than 2")
+            print("Would you like to try again? Type Yes or No")
+            answer = input().capitalize()
             if answer == "No":
                 break
             elif answer == "Yes":
@@ -68,8 +53,8 @@ def user_input():
                 break
         except Error.LargeNumberError:
             print("The number you chose is too large and will likely crash the system")
-            print("Would you like to try again? Type \'Yes\' or \'No\'")
-            answer = input()
+            print("Would you like to try again? Type Yes or No")
+            answer = input().capitalize()
             if answer == "No":
                 break
             elif answer == "Yes":
@@ -81,5 +66,5 @@ def user_input():
         except Exception as e:
             print(f"There is another error: {e}")
         else:
-            print("You have successfully chosen a viable number")
+            print("You have chosen a viable number")
             return x
