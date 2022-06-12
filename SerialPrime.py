@@ -79,7 +79,7 @@ def all_pairs(y, chosen_number):
 
         all_pairs = []
         for i in range(len(y)):
-            if i < (int(len(y) / 2)):
+            if i < (int((len(y) +1) / 2)):
                 if (y[i] + reversed_list[i]) == chosen_number:
                     temp = (y[i], reversed_list[i])
                     all_pairs.append(temp)
@@ -93,9 +93,14 @@ def all_pairs(y, chosen_number):
                         if y[j] + reversed_list[i] > chosen_number:
                             break
                 elif (y[i] + reversed_list[i]) > chosen_number:
-                    print("BIGGGGERRRR")
-                    print(y[i])
-                    print(reversed_list[i])
+                    j = reversed_list.index(reversed_list[i])
+                    for j in range(reversed_list.index(reversed_list[i]) + 1, len(reversed_list)):
+                        if y[i] + reversed_list[j] == chosen_number:
+                            temp = [y[i], reversed_list[j]]
+                            all_pairs.append(temp)
+                            break
+                        if y[i] + reversed_list[j] < chosen_number:
+                            break
             else:
                 break
         return all_pairs
@@ -148,6 +153,9 @@ def remove_non_primes(all_pairs, all_primes):
         for i in all_pairs:
             for j in all_primes:
                 if i[1] % j == 0 and i[1] != j:
+                    items_to_remove.append(i)
+                    break
+                if i[0] % j == 0 and i[0] != j:
                     items_to_remove.append(i)
                     break
         final_prime_list = [i for i in all_pairs if i not in items_to_remove]
