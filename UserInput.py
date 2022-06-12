@@ -10,10 +10,32 @@ import time
 
 
 def program_mode():
-    print("If you like to find a single pair of primes, press 1.")
-    print("If you like to find a every pair of primes, press 2.")
-    x = int(input())
-    return x
+    print("You now have the option to calculate all prime-pairs. Would you like to do this?")
+    print("Type Yes or No:")
+    while True:
+        try:
+            x = input().capitalize()
+            if x == 'Yes':
+                print("You chose yes")
+            elif x == "No":
+                print("You chose no")
+            else:
+                raise Error.NotYesOrNoError
+
+        except Error.NotYesOrNoError:
+            print("The number you chose does not fit the criteria")
+            print("Would you like to try again? Type Yes or No:")
+            answer = input().capitalize()
+            if answer == "No":
+                break
+            elif answer == "Yes":
+                print("You'll now make another attempt")
+            else:
+                print(f"You typed \'{answer}\' which is not a viable input")
+                print("The program will now end")
+                break
+        else:
+            return x
 
 
 def user_input():
@@ -30,11 +52,11 @@ def user_input():
                 raise Error.NotGreaterThan2Error
             if x % 2 != 0:
                 raise Error.OddNumberError
-            if x >= 100000:
+            if x > 100000000:
                 raise Error.LargeNumberError
         except ValueError:
             print("The number you chose does not fit criteria")
-            print("Would you like to try again? Type Yes or No")
+            print("Would you like to try again? Type Yes or No:")
             answer = input().capitalize()
             if answer == "No":
                 break
@@ -46,7 +68,7 @@ def user_input():
                 break
         except Error.OddNumberError:
             print("The number you chose is odd. The input number must be even")
-            print("Would you like to try again? Type Yes or No")
+            print("Would you like to try again? Type Yes or No:")
             answer = input().capitalize()
             print(f"You answered {answer}")
             if answer == "No":

@@ -101,22 +101,56 @@ def all_pairs(y, chosen_number):
         return all_pairs
 
 
+def single_pair(y, chosen_number):
 
-def remove_non_primes(pairs_of_primes2, all_primes):
+    try:
+        if type(y) is not list:
+            raise ValueError
+    except ValueError:
+        pass
+    else:
+        reverse_list = reversed(y)
+        reversed_list = list(reverse_list)
+        pairs = []
+        count = 0
+        for i in y:
+            if y.index(i) < (int(len(y) / 2) + 1) and count != len(y):
+                for j in reversed_list:
+                    if i + j < chosen_number:
+                        break
+                    if i + j == chosen_number:
+                        count = 0
+                        temp = [i, j]
+                        for k in y:
+                            if j % k == 0 and j != k:
+                                break
+                            else:
+                                count += 1
+                        if count == len(y):
+                            break
+                    if i + j > chosen_number:
+                        pass
+            else:
+                break
+        pairs.append(temp)
+        return pairs
+
+
+def remove_non_primes(all_pairs, all_primes):
     # This function
     try:
-        if type(pairs_of_primes2) is not list:
+        if type(all_pairs) is not list:
             raise ValueError
     except ValueError:
         pass
     else:
         items_to_remove = []
-        for i in pairs_of_primes2:
+        for i in all_pairs:
             for j in all_primes:
                 if i[1] % j == 0 and i[1] != j:
                     items_to_remove.append(i)
                     break
-        final_prime_list = [i for i in pairs_of_primes2 if i not in items_to_remove]
+        final_prime_list = [i for i in all_pairs if i not in items_to_remove]
 
         return final_prime_list
 

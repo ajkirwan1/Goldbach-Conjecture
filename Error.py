@@ -13,3 +13,7 @@ class OddNumberError(Error):
 
 class LargeNumberError(Error):
     pass
+
+
+class NotYesOrNoError(Error):
+    pass
