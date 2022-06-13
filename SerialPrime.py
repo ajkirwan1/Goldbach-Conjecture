@@ -68,6 +68,8 @@ def all_pairs(y, chosen_number):
     # This function takes 2 arguments: y = the outputted list of numbers from the function produce_number_list()
     # finds all pairs of numbers in the list 'adjusted_list' that is returned from the function
     # adjust_list(), and returns a list of pairs. Note that not all of these numbers are necessarily prime numbers.
+    # This function has been benchmarked up a input value of 1,000,000. A total of 245 seconds elapsed for this value.
+
     try:
         if type(y) is not list:
             raise ValueError
@@ -142,7 +144,8 @@ def single_pair(y, chosen_number):
 
 
 def remove_non_primes(all_pairs, all_primes):
-    # This function
+    # This function has been benchmarked up a input value of 1,000,000. A total of 289 seconds elapsed for this value.
+    # For a value of 1,000,000, both remove_non_primes2() and remove_non_primes() return the same set of lists.
     try:
         if type(all_pairs) is not list:
             raise ValueError
@@ -157,6 +160,36 @@ def remove_non_primes(all_pairs, all_primes):
                     break
                 if i[0] % j == 0 and i[0] != j:
                     items_to_remove.append(i)
+                    break
+        final_prime_list = [i for i in all_pairs if i not in items_to_remove]
+
+        return final_prime_list
+
+
+def remove_non_primes2(all_pairs, all_primes):
+    # This function has been benchmarked up a input value of 1,000,000. A total of 268 seconds elapsed for this value.
+    # For a value of 1,000,000, both remove_non_primes2() and remove_non_primes() return the same set of lists.
+    try:
+        if type(all_pairs) is not list:
+            raise ValueError
+    except ValueError:
+        pass
+    else:
+        items_to_remove = []
+        for i in all_pairs:
+            for j in all_primes:
+                max_number = int(i[1]/j) + 1
+                if i[1] % j == 0 and i[1] != j:
+                    items_to_remove.append(i)
+                    break
+                elif j > max_number:
+                    break
+        for i in all_pairs:
+            for j in all_primes:
+                if i[0] % j == 0 and i[0] != j:
+                    items_to_remove.append(i)
+                    break
+                elif i[0] == j:
                     break
         final_prime_list = [i for i in all_pairs if i not in items_to_remove]
 

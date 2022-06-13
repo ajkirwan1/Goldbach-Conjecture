@@ -6,6 +6,7 @@ class TimerError(Exception):
 
 
 class Timer:
+    # This Class was used to benchmark the time-cost of several functions throughout each script.
     def __init__(self, text="The time elapsed is {:0.4f} seconds"):
         self._start_time = None
         self.text = text
