@@ -1,5 +1,8 @@
 import time
 
+# This module is used to determine the time-cost of functions throughout the program. Several functions throught the
+# program have been benchmarked for large integers (1,000,000) using this module.
+
 
 class TimerError(Exception):
     pass

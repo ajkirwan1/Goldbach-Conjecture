@@ -1,9 +1,10 @@
 import SerialPrime as sp
-import Error
 import timer
 import UserInput
 t = timer.Timer()
 
+# This is the main script of the program. It imports the pre-defined modules time, and the modules SerialPrime
+# and timer.
 
 if __name__ == '__main__':
 

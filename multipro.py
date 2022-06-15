@@ -1,10 +1,13 @@
-from multiprocessing import Process, Pool,cpu_count
-import time
-import os
+from multiprocessing import Process, Pool, cpu_count
 import timer
+import UserInput
+
+# This module is not currently implemented in the program, and is still in development. It is being developed to
+# attempt to run some of the time-demanding parts of the code concurrently.
+
 
 t = timer.Timer()
-import UserInput
+
 
 def prime1(x):
     prime_1 = ((6 * x) - 1)

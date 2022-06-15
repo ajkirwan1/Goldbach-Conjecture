@@ -1,8 +1,7 @@
 
 import Error
-import time
 
-# The UserInput.py script contains a single function: user_input(). This function takes no arguments and is run in
+# The UserInput.py module contains a single function: user_input(). This function takes no arguments and is run in
 # main.py. It designed to request  a positive even integer that's greater than 2, and returns this value.
 # The bulk of the function is wrapped in a while loop, and contains Try and Except to handle errors resulting from
 # a number of non-valid user input values such as odd numbers, numbers less than 2, and non-integer values. It also

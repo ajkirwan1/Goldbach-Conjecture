@@ -1,6 +1,12 @@
 import timer
-import UserInput
 t = timer.Timer()
+
+# This module contains the bulk of the code used to determine the a single pair of prime numbers and all prime
+# numbers up a given user-defined value. All programs in this module are run by serial processing. Concurrent
+# processing for several of the time-demanding functions in this module are to be developed and placed in
+# multipro.py (not currently implemented), which is still in development.
+# Several functions in this module have been benchmarked for numbers up to 1,000,000 for determining all
+# prime pairs.
 
 
 def function1(x):
@@ -109,7 +115,7 @@ def all_pairs(y, chosen_number):
 
 
 def single_pair(y, chosen_number):
-
+    # This function is used to produce a single pair of prime numbers.
     try:
         if type(y) is not list:
             raise ValueError
@@ -195,22 +201,3 @@ def remove_non_primes2(all_pairs, all_primes):
 
         return final_prime_list
 
-
-if __name__ == '__main__':
-    t.start_timer()
-    chosen_number = UserInput.user_input()
-    t.stop_timer()
-    t.start_timer()
-    all_primes = produce_primes(chosen_number)
-    t.stop_timer()
-    t.start_timer()
-    pairs_of_primes2 = prime_pairs2(all_primes, chosen_number)
-    t.stop_timer()
-    t.start_timer()
-    final_list_of_pairs = remove_non_primes(pairs_of_primes2, all_primes)
-    t.stop_timer()
-    if type(final_list_of_pairs) is list:
-       print(final_list_of_pairs)
-       #pass
-    else:
-        pass
